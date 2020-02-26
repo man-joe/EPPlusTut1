@@ -35,7 +35,7 @@ namespace WorldCities
             // Add ApplicationDbContext.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")
+                    Configuration.GetConnectionString("ApplicationDbContext")
                     )
             );
         }
@@ -79,7 +79,8 @@ namespace WorldCities
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
